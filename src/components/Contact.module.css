@@ -1,0 +1,207 @@
+.section {
+  background: var(--bg);
+  padding: 120px 5vw;
+  position: relative; overflow: hidden;
+}
+.glow1 {
+  position: absolute; top: -200px; left: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(26,122,122,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.glow2 {
+  position: absolute; bottom: -200px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(232,119,34,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.topText {
+  text-align: center; margin-bottom: 60px;
+  position: relative; z-index: 1;
+}
+.label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 16px;
+  justify-content: center;
+}
+.label::before { content: ''; width: 24px; height: 1px; background: var(--orange); }
+
+.heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700; line-height: 1.1; letter-spacing: -1px;
+}
+.heading em { color: var(--teal); font-style: italic; }
+.subtext {
+  max-width: 520px; margin: 16px auto 0;
+  font-size: 15px; color: var(--text-muted); line-height: 1.8;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  position: relative; z-index: 1;
+}
+
+/* Info Card */
+.card {
+  background: rgba(255,255,255,0.65);
+  border: 1px solid rgba(26,122,122,0.2);
+  border-radius: 4px; padding: 48px;
+  position: relative; overflow: hidden;
+  opacity: 0; transform: translateY(40px);
+}
+.card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--orange));
+}
+.card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--text); margin-bottom: 32px;
+}
+
+.item {
+  display: flex; align-items: flex-start; gap: 16px;
+  margin-bottom: 24px;
+}
+.item:last-of-type { margin-bottom: 0; }
+
+.itemIcon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border: 1.5px solid rgba(26,122,122,0.3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--teal);
+  transition: all 0.3s;
+}
+.item:hover .itemIcon {
+  background: var(--teal); color: white;
+  box-shadow: 0 0 16px rgba(26,122,122,0.3);
+}
+
+.itemBody { flex: 1; }
+.itemLabel {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 4px; display: block;
+}
+.itemValue {
+  font-size: 15px; color: var(--text); font-weight: 500; line-height: 1.5;
+}
+.itemValue a {
+  color: var(--text); text-decoration: none; transition: color 0.3s;
+}
+.itemValue a:hover { color: var(--teal); }
+
+.hours {
+  margin-top: 32px; padding-top: 32px;
+  border-top: 1px solid rgba(26,122,122,0.15);
+}
+.hoursLabel {
+  font-size: 12px; color: var(--text-muted);
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;
+}
+.hoursRow {
+  display: flex; justify-content: space-between;
+  font-size: 14px; margin-bottom: 8px;
+}
+.hoursRow span:first-child { color: var(--text-muted); }
+.hoursTime { color: var(--text); font-weight: 500; }
+.hoursAppt { color: var(--orange); font-weight: 500; }
+
+/* Map */
+.mapWrap {
+  background: rgba(255,255,255,0.65);
+  border: 1px solid rgba(26,122,122,0.2);
+  border-radius: 4px; overflow: hidden;
+  position: relative;
+  opacity: 0; transform: translateY(40px);
+}
+.mapPlaceholder {
+  width: 100%; aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #e8e2d8 0%, #ddd7cc 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.mapGrid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(26,122,122,0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,122,122,0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.pulse {
+  position: absolute; z-index: 1;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  border: 2px solid rgba(232,119,34,0.3);
+  animation: mapPulse 2.5s ease-out infinite;
+}
+.pulse:nth-child(2) { animation-delay: 0.8s; }
+.pulse:nth-child(3) { animation-delay: 1.6s; }
+@keyframes mapPulse {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+.pinContainer {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; align-items: center;
+}
+.pin {
+  width: 52px; height: 52px;
+  background: var(--orange);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(232,119,34,0.4);
+  animation: pinBounce 2s ease-in-out infinite;
+}
+.pin svg { transform: rotate(45deg); color: white; }
+@keyframes pinBounce {
+  0%, 100% { transform: rotate(-45deg) translateY(0); }
+  50% { transform: rotate(-45deg) translateY(-6px); }
+}
+.pinShadow {
+  width: 20px; height: 6px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 50%; margin-top: 4px;
+  animation: shadowPulse 2s ease-in-out infinite;
+}
+@keyframes shadowPulse {
+  0%, 100% { transform: scaleX(1); opacity: 0.3; }
+  50% { transform: scaleX(0.7); opacity: 0.15; }
+}
+.mapLabel {
+  margin-top: 16px; text-align: center;
+}
+.mapLabel strong {
+  display: block; font-family: 'Syne', sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--text);
+}
+.mapLabel span { font-size: 12px; color: var(--text-muted); }
+
+.mapFooter {
+  padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(26,122,122,0.1);
+}
+.mapFooter span { font-size: 12px; color: var(--text-muted); }
+.mapLink {
+  font-size: 12px; color: var(--teal);
+  text-decoration: none; letter-spacing: 1px;
+  text-transform: uppercase; font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+  transition: color 0.3s;
+}
+.mapLink:hover { color: var(--teal-light); }
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+  .card { padding: 28px; }
+}
